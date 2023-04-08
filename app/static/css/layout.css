@@ -1,0 +1,48 @@
+@import url('pacientes.css');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+
+#all-nav {
+  padding: 0;
+}
+
+#lists {
+  margin: auto;
+}
+
+#lists li {
+  padding: 10px;
+}
+
+#lists li:hover {
+  background: #103b7d;
+  color: rgb(210, 209, 209);
+  transition: all ease-in 0.3s;
+}
+
+#nav-container {
+  background: #144999;
+  color: white;
+}
+
+#nav-container * {
+  color: white;
+}
+
+.nav-link i {
+  font-size: 1.5rem;
+  margin: 0 2px;
+}
+
+#company-user * {
+  color: greenyellow;
+}
+
+#logout * {
+  color: rgb(224, 35, 35);
+}

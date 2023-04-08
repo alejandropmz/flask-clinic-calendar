@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block title %} Pacientes {% endblock %} {%
+include 'navbar.html' %} {% block body %}
+
+<div class="pacientes">
+  <div class="top-bar d-flex row">
+    <div class="col-sm-12 col-md-6 title">
+      <i class="bx bx-male-female"></i>
+      <h5>Listado de pacientes</h5>
+    </div>
+    <div class="col-sm-12 col-md-6 search">
+      <input placeholder="Buscar paciente" type="text" name="" id="" />
+      <button>Buscar</button>
+    </div>
+  </div>
+
+  <!-- tabla con información -->
+  <div class="top-navigation">
+    <button id="add-patient">button</button>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="info d-flex justify-content-center">
+    <table>
+      <tr>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>F. Nacimiento</th>
+        <th>Consultas</th>
+        <th>Acciones</th>
+      </tr>
+      {% if info %} {% for i in info %}
+      <tr class="patient-container">
+        <td>
+          <img
+            src="https://affinitaslegal.com/wp-content/uploads/2020/08/imagen-perfil-sin-foto.jpg"
+            alt=""
+          />
+        </td>
+        <td>{{i[1].upper()}}</td>
+        <td>{{i[2][1]}}/{{i[2][2]}}/{{i[2][0]}}</td>
+        <td>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-calendar-event"></i>Consultas
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+        </td>
+        <td>
+          <button><i class="bi bi-eye"></i>ver</button>
+          <button><i class="bi bi-pencil-square"></i>modificar</button>
+          <button><i class="bi bi-trash"></i>Eliminar</button>
+        </td>
+      </tr>
+      {% endfor %} {% endif %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

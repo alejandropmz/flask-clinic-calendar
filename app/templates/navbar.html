@@ -1,0 +1,51 @@
+{% extends 'layout.html' %} {% block body %}
+<nav id="all-nav" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div id="nav-container" class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul id="lists" class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/pacientes"
+            ><i class="bx bxs-user-badge"></i><span>Pacientes</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/citas"
+            ><i class="bx bx-calendar-week"></i><span>Citas</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/facturas"
+            ><i class="bx bxs-calendar-week"></i><span>Facturas</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/listado"
+            ><i class="bx bx-list-ul"></i><span>Listado</span></a
+          >
+        </li>
+        <li id="company-user" class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/sesion"
+            ><i class='bx bxs-user-circle' ></i><span>user@gmail.com</span></a
+          >
+        </li>
+        <li id="logout" class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/logout"
+            ><i class='bx bx-log-out'></i><span>Salir</span></a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
