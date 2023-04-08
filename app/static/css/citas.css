@@ -1,0 +1,72 @@
+.top-navigation .citas {
+  width: 100%;
+}
+
+.top-navigation #add-appointment {
+  display: flex;
+  justify-content: start;
+}
+
+.top-navigation #show-days {
+  display: flex;
+  justify-content: center;
+}
+
+.top-navigation #paginations {
+  display: flex;
+  justify-content: end;
+}
+
+@media screen and (max-width: 768px) {
+  .top-navigation #add-appointment,
+  .top-navigation #show-days,
+  .top-navigation #paginations {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+  }
+
+  .top-navigation {
+    display: block;
+  }
+
+}
+
+#aprove-appointment {
+  border-radius: 5px;
+  padding: 5px 8px;
+  border: none;
+  background: green;
+  color: white;
+  width: 80%;
+  cursor: default;
+}
+
+#aprove-appointment:hover {
+  background: #066406;
+}
+
+#cancel-appointment {
+  border-radius: 5px;
+  padding: 5px 8px;
+  border: none;
+  background: red;
+  color: white;
+  width: 80%;
+  cursor: default;
+}
+
+#cancel-appointment:hover {
+  background: #bc0e0e;
+}
+
+.top-navigation .dropdown #dropdownMenuButton1 {
+  background: #3f83f9;
+  border: none;
+}
+
+.top-navigation .dropdown #dropdownMenuButton1:focus,
+.top-navigation .dropdown #dropdownMenuButton1:focus-visible,
+.top-navigation .dropdown #dropdownMenuButton1:active {
+  outline: none;
+}

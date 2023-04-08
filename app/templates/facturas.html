@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% include 'navbar.html' %} {% block body %}
+
+<div class="pacientes">
+  <div class="top-bar d-flex row">
+    <div class="col-sm-12 col-md-6 title">
+      <i class="bx bxs-calendar-week"></i>
+      <h5>Listado de facturas</h5>
+    </div>
+    <div class="col-sm-12 col-md-6 search">
+      <input placeholder="Buscar factura" type="text" name="" id="" />
+      <button>Buscar</button>
+    </div>
+  </div>
+
+  <!-- tabla con información -->
+  <div class="top-navigation">
+    <div id="add-appointment" class="citas">
+      <button id="add-patient">Agregar factura</button>
+    </div>
+    <div id="show-days" class="dropdown citas">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Hoy
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+    <div id="paginations" class="citas">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="info d-flex justify-content-center">
+    <table>
+      <tr>
+        <th>Cliente</th>
+        <th>N° de factura</th>
+        <th>Fecha de factura</th>
+        <th>Monto facturado</th>
+        <th>Término (Días)</th>
+        <th>F. de vencimiento</th>
+        <th>Pago</th>
+      </tr>
+      {% if checks %} {% for check in checks %}
+      <tr class="patient-container">
+        <td>{{check[0]}}</td>
+        <td>{{check[1]}}</td>
+        <td>{{check[2][2]}}/{{check[2][1]}}/{{check[2][0]}}</td>
+        <td>$ {{check[3]}}</td>
+        <td>{{check[4]}}</td>
+        <td>{{check[5][2]}}/{{check[5][1]}}/{{check[5][0]}}</td>
+        <td>
+          {% if check[6] %} <button id="aprove-appointment">PAGADA</button> {%
+          else %} <button id="cancel-appointment">EN MORA</button> {% endif %}
+        </td>
+      </tr>
+      {% endfor %} {% endif %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

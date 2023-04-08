@@ -1,0 +1,74 @@
+{% extends 'layout.html' %} {% include 'navbar.html' %} {% block body %}
+
+<div class="pacientes">
+  <div class="top-bar d-flex row">
+    <div class="col-sm-12 col-md-6 title">
+      <i class="bx bx-calendar-check"></i>
+      <h5>Listado de citas</h5>
+    </div>
+    <div class="col-sm-12 col-md-6 search">
+      <input placeholder="Buscar cita" type="text" name="" id="" />
+      <button>Buscar</button>
+    </div>
+  </div>
+
+  <!-- tabla con información -->
+  <div class="top-navigation">
+    <div id="add-appointment" class="citas"><button id="add-patient">Agregar cita</button></div>
+    <div id="show-days" class="dropdown citas">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Hoy
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+    <div id="paginations" class="citas">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="info d-flex justify-content-center">
+    <table>
+      <tr>
+        <th>No.</th>
+        <th>Inicio</th>
+        <th>Fin</th>
+        <th>Paciente</th>
+        <th>Razón de cita</th>
+        <th>Estado</th>
+      </tr>
+      {% if appointments %} {% for appointment in appointments %}
+      <tr class="patient-container">
+        <td>{{appointment[0]}}</td>
+        <td>{{appointment[2]}}</td>
+        <td>{{appointment[3]}}</td>
+        <td>{{appointment[1].upper()}}</td>
+        <td>{{appointment[4].upper()}}</td>
+        <td>
+          {% if appointment[5] %}
+          <button id="aprove-appointment">APROBADA</button> {% else %}
+          <button id="cancel-appointment">CANCELADA</button> {% endif %}
+        </td>
+      </tr>
+      {% endfor %} {% endif %}
+    </table>
+  </div>
+
+  {% endblock %}
+</div>
