@@ -7,25 +7,38 @@
       <h5>Agregar pacientes</h5>
     </div>
   </div>
+
+  <!-- Formulario -->
+
+
   <form id="agregar-paciente-form" action="/cargar_paciente" method="POST">
     <h4 id="agregar-paciente-titulo">INFORMACIÓN DEL PACIENTE</h4>
-    <label for="identificacion">Identificación</label>
-    <input
-      type="text"
-      name="identificacion"
-      placeholder="idetificación"
-    /><br />
-    <label for="nombres">Nombres</label>
-    <input type="text" name="nombres" placeholder="Nombres" /><br />
-    <label for="apellidos">Apellidos</label>
-    <input type="text" name="apellidos" placeholder="Apellidos" /><br />
-    <label for="nacimiento">F. de Nacimiento</label>
-    <input type="text" name="nacimiento" placeholder="F. de Nacimiento" /><br />
-    <label for="contacto">Contacto</label>
-    <input type="text" name="contacto" placeholder="Contacto" /><br />
-    <label for="direccion">Dirección</label>
-    <input type="text" name="direccion" placeholder="Dirección" /><br />
-    <button type="submit">Resgitrar</button>
+    <div>
+      <label for="identificacion">Identificación</label>
+      <input
+        type="text"
+        name="identificacion"
+        placeholder="idetificación"
+      /><br />
+      <label for="nombres">Nombres</label>
+      <input type="text" name="nombres" placeholder="Nombres" /><br />
+      <label for="apellidos">Apellidos</label>
+      <input type="text" name="apellidos" placeholder="Apellidos" /><br />
+      <label id="nacimi" for="nacimiento">F. de Nacimiento</label>
+      <input
+        style="border: solid 2px red;"
+        type="date"
+        name="nacimiento"
+        placeholder="F. de Nacimiento"
+      /><br />
+      <label for="contacto">Contacto</label>
+      <input type="text" name="contacto" placeholder="Contacto" /><br />
+      <label for="direccion">Dirección</label>
+      <input type="text" name="direccion" placeholder="Dirección" /><br />
+    </div>
+    <div>
+      <button type="submit">Resgitrar</button>
+    </div>
   </form>
 </div>
 {% endblock %}

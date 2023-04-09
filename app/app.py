@@ -11,6 +11,8 @@ app.config["MYSQL_DB"] = "clinic"
 
 mysql = MySQL(app)
 
+## VISTA DE PACIENTES
+
 
 @app.route("/")
 def index():
@@ -47,14 +49,49 @@ def cargar_paciente():
             (identificacion, nombres, apellidos, nacimiento, contacto, direccion),
         )
         mysql.connection.commit()
-        print(identificacion)
-        print(nombres)
-        print(apellidos)
+        cur.close()
         print(nacimiento)
-        print(contacto)
-        print(direccion)
+        return redirect(url_for("pacientes"))
+
+
+@app.route("/editar_paciente/<string:id>")
+def editar_paciente(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM pacientes WHERE id = %s", id)
+    data = cur.fetchall()
+    cur.close()
+    return render_template("guardar_edición_paciente.html", patient=data[0])
+
+
+@app.route("/guardar_edicion_paciente/<string:id>", methods=["POST"])
+def guardar_edicion_paciente(id):
+    if request.method == "POST":
+        identificacion = request.form["identificacion"]
+        nombres = request.form["nombres"]
+        apellidos = request.form["apellidos"]
+        nacimiento = request.form["nacimiento"]
+        contacto = request.form["contacto"]
+        direccion = request.form["direccion"]
+        cur = mysql.connection.cursor()
+        cur.execute(
+            """
+            UPDATE pacientes
+            SET identificacion = %s,
+            nombres = %s,
+            apellidos = %s,
+            nacimiento = %s,
+            contacto = %s,
+            direccion = %s
+            WHERE id = %s
+        """,
+            (identificacion, nombres, apellidos, nacimiento, contacto, direccion, id),
+        )
+        mysql.connection.commit()
         cur.close()
         return redirect(url_for("pacientes"))
+
+
+## VISTA DE CITAS
 
 
 @app.route("/citas")

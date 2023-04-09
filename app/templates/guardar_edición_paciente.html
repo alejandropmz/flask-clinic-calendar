@@ -1,0 +1,66 @@
+{% extends "layout.html" %} {% include 'navbar.html' %} {% block body %}
+
+<div class="pacientes">
+  <div class="top-bar d-flex row">
+    <div class="col-sm-12 col-md-6 title">
+      <i class="bx bx-edit"></i>
+      <h5>Modificar pacientes</h5>
+    </div>
+  </div>
+
+  <!-- Formulario -->
+
+  <form id="agregar-paciente-form" action="/guardar_edicion_paciente/{{patient[0]}}" method="POST">
+    <h4 id="agregar-paciente-titulo">EDITAR INFORMACIÓN</h4>
+    <div>
+      <label for="identificacion">Identificación</label>
+      <input
+        type="text"
+        name="identificacion"
+        placeholder="idetificación"
+        value="{{patient[1]}}"
+      /><br />
+      <label for="nombres">Nombres</label>
+      <input
+        type="text"
+        name="nombres"
+        placeholder="Nombres"
+        value="{{patient[2]}}"
+      /><br />
+      <label for="apellidos">Apellidos</label>
+      <input
+        type="text"
+        name="apellidos"
+        placeholder="Apellidos"
+        value="{{patient[3]}}"
+      /><br />
+      <label id="nacimi" for="nacimiento">F. de Nacimiento</label>
+      <input
+        style="border: solid 2px red"
+        type="date"
+        name="nacimiento"
+        placeholder="F. de Nacimiento"
+        value=""
+      /><br />
+      <label for="contacto">Contacto</label>
+      <input
+        type="text"
+        name="contacto"
+        placeholder="Contacto"
+        value="{{patient[5]}}"
+      /><br />
+      <label for="direccion">Dirección</label>
+      <input
+        type="text"
+        name="direccion"
+        placeholder="Dirección"
+        value="{{patient[6]}}"
+      /><br />
+    </div>
+    <div>
+      <button type="submit">Guardar cambios</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

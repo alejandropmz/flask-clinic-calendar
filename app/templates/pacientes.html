@@ -46,8 +46,13 @@ include 'navbar.html' %} {% block body %}
           />
         </td>
         <td>{{patient[2].upper()}} {{patient[3].upper()}}</td>
-        <td>{{patient[4]}}</td>
-        <td>ninguna</td>
+        {% if patient[4] %}
+        <td>
+          {{patient[4].split("-")[2]}}/{{patient[4].split("-")[1]}}/{{patient[4].split("-")[0]}}
+        </td>
+        {% else %}
+        <td>NO ESPECIFICADA</td>
+        {% endif %}
         <td>
           <div class="dropdown">
             <button
@@ -68,7 +73,9 @@ include 'navbar.html' %} {% block body %}
         </td>
         <td>
           <button><i class="bi bi-eye"></i>ver</button>
-          <button><i class="bi bi-pencil-square"></i>modificar</button>
+          <a href="/editar_paciente/{{patient[0]}}">
+            <button><i class="bi bi-pencil-square"></i>modificar</button>
+          </a>
           <button><i class="bi bi-trash"></i>Eliminar</button>
         </td>
       </tr>
