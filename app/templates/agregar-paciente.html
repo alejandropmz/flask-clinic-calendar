@@ -1,0 +1,31 @@
+{% extends 'layout.html' %} {% include 'navbar.html' %} {% block body %}
+
+<div class="pacientes">
+  <div class="top-bar d-flex row">
+    <div class="col-sm-12 col-md-6 title">
+      <i class="bx bxs-user-plus"></i>
+      <h5>Agregar pacientes</h5>
+    </div>
+  </div>
+  <form id="agregar-paciente-form" action="/cargar_paciente" method="POST">
+    <h4 id="agregar-paciente-titulo">INFORMACIÓN DEL PACIENTE</h4>
+    <label for="identificacion">Identificación</label>
+    <input
+      type="text"
+      name="identificacion"
+      placeholder="idetificación"
+    /><br />
+    <label for="nombres">Nombres</label>
+    <input type="text" name="nombres" placeholder="Nombres" /><br />
+    <label for="apellidos">Apellidos</label>
+    <input type="text" name="apellidos" placeholder="Apellidos" /><br />
+    <label for="nacimiento">F. de Nacimiento</label>
+    <input type="text" name="nacimiento" placeholder="F. de Nacimiento" /><br />
+    <label for="contacto">Contacto</label>
+    <input type="text" name="contacto" placeholder="Contacto" /><br />
+    <label for="direccion">Dirección</label>
+    <input type="text" name="direccion" placeholder="Dirección" /><br />
+    <button type="submit">Resgitrar</button>
+  </form>
+</div>
+{% endblock %}

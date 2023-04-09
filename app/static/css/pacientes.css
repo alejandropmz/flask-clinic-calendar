@@ -103,7 +103,7 @@
 
 .patient-container td button:hover {
   background: #2e5eb0;
-  transition: all ease-in .3s;
+  transition: all ease-in 0.3s;
 }
 
 .patient-container td .bi {
@@ -133,6 +133,7 @@
 
 .top-navigation #add-patient:hover {
   background: #1b7824;
+  transition: all ease-in 0.3s;
 }
 
 .top-navigation .pagination {

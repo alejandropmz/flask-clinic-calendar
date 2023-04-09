@@ -1,0 +1,46 @@
+#agregar-paciente-form {
+  margin: auto;
+  width: 600px;
+  text-align: center;
+  padding: 10px;
+  border: solid #efeaea;
+  border-width: 1px 0 1px 0;
+}
+
+#agregar-paciente-form * {
+  margin: auto;
+}
+
+#agregar-paciente-titulo {
+  text-align: center;
+  margin: 5px auto;
+}
+
+#agregar-paciente-form label {
+  width: 130px;
+  background: #efeaea;
+}
+
+#agregar-paciente-form input {
+  padding: 0 5px;
+  border: solid 1px #efeaea;
+}
+
+#agregar-paciente-form input:focus {
+  border: solid 1px #cdc9c9;
+  outline: none;
+}
+
+#agregar-paciente-form button {
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background: #26a132;
+  color: white;
+}
+
+#agregar-paciente-form button:hover {
+  background: #1b7824;
+  transition: all ease-in 0.3s;
+}
