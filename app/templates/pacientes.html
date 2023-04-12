@@ -1,5 +1,7 @@
-{% extends "layout.html" %} {% block title %} Pacientes {% endblock %} {%
-include 'navbar.html' %} {% block body %}
+{% extends "layout.html" %} {% include 'navbar.html' %} {% block title %}
+Pacientes {% endblock %} {% block body %}
+
+
 
 <div class="pacientes">
   <div class="top-bar d-flex row">
@@ -76,12 +78,15 @@ include 'navbar.html' %} {% block body %}
           <a href="/editar_paciente/{{patient[0]}}">
             <button><i class="bi bi-pencil-square"></i>modificar</button>
           </a>
-          <button><i class="bi bi-trash"></i>Eliminar</button>
+          <a href="/eliminar_paciente/{{patient[0]}}"
+            ><button><i class="bi bi-trash"></i>Eliminar</button></a
+          >
         </td>
       </tr>
       {% endfor %} {% endif %}
     </table>
   </div>
 </div>
+
 
 {% endblock %}

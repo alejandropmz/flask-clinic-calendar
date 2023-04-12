@@ -87,3 +87,10 @@
 .clinic-info-top .text h1 {
   margin-top: 15px;
 }
+
+
+/* Notificación */
+
+#notificacion {
+  border: solid red 2px;
+}

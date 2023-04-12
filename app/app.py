@@ -1,8 +1,9 @@
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_mysqldb import MySQL
 import datetime, time
 
 app = Flask(__name__)
+
 
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
@@ -10,8 +11,9 @@ app.config["MYSQL_PASSWORD"] = "123456"
 app.config["MYSQL_DB"] = "clinic"
 
 mysql = MySQL(app)
+app.secret_key = "mysecretkey"
 
-## VISTA DE PACIENTES
+""" VISTA DE PACIENTES """
 
 
 @app.route("/")
@@ -25,8 +27,10 @@ def pacientes():
     cur.execute("SELECT * FROM pacientes")
     data = cur.fetchall()
     cur.close()
-    print(data)
     return render_template("pacientes.html", patients=data)
+
+
+## AGREGAR PACIENTES
 
 
 @app.route("/agregar_paciente")
@@ -50,8 +54,10 @@ def cargar_paciente():
         )
         mysql.connection.commit()
         cur.close()
-        print(nacimiento)
         return redirect(url_for("pacientes"))
+
+
+## EDITAR PACIENTES
 
 
 @app.route("/editar_paciente/<string:id>")
@@ -91,18 +97,59 @@ def guardar_edicion_paciente(id):
         return redirect(url_for("pacientes"))
 
 
-## VISTA DE CITAS
+## ELIMINAR PACIENTES
+
+
+@app.route("/eliminar_paciente/<string:id>")
+def eliminar_pacientes(id):
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM pacientes WHERE id = %s", id)
+    mysql.connection.commit()
+    cur.close()
+    return redirect(url_for("pacientes"))
+
+
+""" VISTA DE CITAS """
 
 
 @app.route("/citas")
 def citas():
-    citas = [
-        (1, "alejandro pacheco", (9, 00), (9, 45), "control", True),
-        (2, "alex pacheco", (10, 15), (11, 00), "vacuna", False),
-    ]
-    print(citas)
-    hours = citas[0][2]
-    return render_template("citas.html", appointments=citas)
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM citas")
+    data = cur.fetchall()
+    cur.close()
+    print(data)
+    return render_template("citas.html", appointments=data)
+
+
+@app.route("/agendar_cita")
+def agregar_cita():
+    return render_template("agendar_cita.html")
+
+
+@app.route("/guardar_cita", methods=["POST"])
+def guardar_cita():
+    if request.method == "POST":
+        ingreso = request.form["ingreso"]
+        salida = request.form["salida"]
+        paciente = request.form["paciente"]
+        razon = request.form["razon"]
+        email = request.form["email"]
+        contacto = request.form["contacto"]
+        cur = mysql.connection.cursor()
+        cur.execute(
+            """
+            INSERT INTO citas (ingreso, salida, paciente, razon, correo, contacto) VALUES (%s, %s, %s, %s, %s, %s)
+        """,
+            (ingreso, salida, paciente, razon, email, contacto),
+        )
+        mysql.connection.commit()
+        cur.close()
+        flash("Cita guardada")
+        return "Cita guardada"
+
+
+""" VISTA FACTURAS """
 
 
 @app.route("/facturas")
@@ -112,7 +159,6 @@ def facturas():
         ("Alejandro Pacheco", 126, (2023, 6, 4), 92000, 12, (2023, 7, 5), False),
         ("Maria Hernandez", 128, (2023, 8, 4), 526500, 12, (2023, 8, 5), True),
     ]
-    print(facturas)
     return render_template("facturas.html", checks=facturas)
 
 

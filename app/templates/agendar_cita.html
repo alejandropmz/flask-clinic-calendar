@@ -1,0 +1,44 @@
+{% extends 'layout.html' %} {% include 'navbar.html' %} {% block body %}
+
+<div class="pacientes">
+  <div class="top-bar d-flex row">
+    <div class="col-sm-12 col-md-6 title">
+      <i class="bx bx-calendar-edit"></i>
+      <h5>Agendar de citas</h5>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <h1>{{ message }}</h1>
+  {% endfor %} {% endif %} {% endwith %}
+
+  <!-- formulario -->
+
+  <form id="agregar-paciente-form" action="/guardar_cita" method="POST">
+    <h4 id="agregar-paciente-titulo">INFORMACIÓN DEL PACIENTE</h4>
+    <div>
+      <label for="ingreso">Hora de ingreso</label>
+      <input type="text" name="ingreso" placeholder="Hora de ingreso" /><br />
+      <label for="salida">Hora de salida</label>
+      <input type="text" name="salida" placeholder="Hora de salida" /><br />
+      <label for="paciente">Paciente</label>
+      <input type="text" name="paciente" placeholder="Paciente" /><br />
+      <label for="razon">Razón de cita</label>
+      <input type="text" name="razon" placeholder="Razón de cita" /><br />
+      <label for="email">Correo</label>
+      <input type="email" name="email" placeholder="Correo electrónico" /><br />
+      <label for="contacto">Contacto</label>
+      <input
+        type="text"
+        name="contacto"
+        placeholder="Número de contacto"
+      /><br />
+    </div>
+    <div>
+      <button type="submit">Agendar cita</button>
+    </div>
+  </form>
+
+  {% endblock %}
+</div>

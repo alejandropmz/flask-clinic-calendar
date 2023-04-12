@@ -14,7 +14,9 @@
 
   <!-- tabla con información -->
   <div class="top-navigation">
-    <div id="add-appointment" class="citas"><button id="add-patient">Agregar cita</button></div>
+    <div id="add-appointment" class="citas">
+      <a href="/agendar_cita"><button id="add-patient">Agendar cita</button></a>
+    </div>
     <div id="show-days" class="dropdown citas">
       <button
         class="btn btn-secondary dropdown-toggle"
@@ -55,15 +57,13 @@
       </tr>
       {% if appointments %} {% for appointment in appointments %}
       <tr class="patient-container">
-        <td>{{appointment[0]}}</td>
+        <td>no actualizado</td>
+        <td>{{appointment[1]}}</td>
         <td>{{appointment[2]}}</td>
         <td>{{appointment[3]}}</td>
-        <td>{{appointment[1].upper()}}</td>
-        <td>{{appointment[4].upper()}}</td>
+        <td>{{appointment[5]}}</td>
         <td>
-          {% if appointment[5] %}
-          <button id="aprove-appointment">APROBADA</button> {% else %}
-          <button id="cancel-appointment">CANCELADA</button> {% endif %}
+          <button id="aprove-appointment">APROBADA</button>
         </td>
       </tr>
       {% endfor %} {% endif %}
