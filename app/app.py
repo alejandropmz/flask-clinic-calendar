@@ -178,7 +178,14 @@ def detalle_cita(id):
     data = cur.fetchall()
     cur.close()
     print(data)
-    return render_template("detalle_cita.html", appointment=data)
+    print(data[0][3])
+
+    cur2 = mysql.connection.cursor()
+    cur2.execute("SELECT * FROM pacientes WHERE id = %s", (data[0][3],))
+    patient = cur2.fetchall()
+    cur2.close()
+    print(patient)
+    return render_template("detalle_cita.html", appointment=data, patient=patient)
 
 
 """ VISTA FACTURAS """
