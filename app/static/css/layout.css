@@ -3,6 +3,7 @@
 @import url("facturas.css");
 @import url("sesion.css");
 @import url("agregar-paciente.css");
+@import url("detalles.css");
 
 * {
   margin: 0;

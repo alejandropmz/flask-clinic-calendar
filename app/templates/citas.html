@@ -54,6 +54,7 @@
         <th>Paciente</th>
         <th>Razón de cita</th>
         <th>Estado</th>
+        <th>Acciones</th>
       </tr>
       {% if appointments %} {% for appointment in appointments %}
       <tr class="patient-container">
@@ -61,9 +62,17 @@
         <td>{{appointment[1]}}</td>
         <td>{{appointment[2]}}</td>
         <td>{{appointment[3]}}</td>
-        <td>{{appointment[5]}}</td>
+        <td>{{appointment[4]}}</td>
         <td>
           <button id="aprove-appointment">APROBADA</button>
+        </td>
+        <td>
+          <a href="/detalle_cita/{{appointment[0]}}">
+            <button><i class="bi bi-eye"></i>ver</button>
+          </a>
+          <a href="/editar_cita/{{appointment[0]}}">
+            <button><i class="bi bi-pencil-square"></i>modificar</button>
+          </a>
         </td>
       </tr>
       {% endfor %} {% endif %}

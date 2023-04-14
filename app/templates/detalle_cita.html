@@ -1,0 +1,69 @@
+{% extends "layout.html" %} {% include 'navbar.html' %} {% block body %}
+
+<div class="pacientes">
+  <div class="top-bar d-flex row">
+    <div class="col-sm-12 col-md-6 title">
+      <i class="bx bx-detail"></i>
+      <h5>Detalles de la cita</h5>
+    </div>
+  </div>
+
+  <form
+    id="agregar-paciente-form"
+    action="/editar_cita/{{appointment[0]}}"
+    method="POST"
+  >
+    <h4 id="agregar-paciente-titulo">INFORMACIÓN DE LA CITA</h4>
+    <div>
+      {% if appointment %} {% for app in appointment %}
+      <label for="ingreso">Hora de ingreso</label>
+      <input
+        type="text"
+        name="ingreso"
+        placeholder="{{app[1]}}"
+        readonly
+      /><br />
+      <label for="salida">Hora de salida</label>
+      <input
+        type="text"
+        name="salida"
+        placeholder="{{app[2]}}"
+        readonly
+      /><br />
+      <label for="paciente">Paciente</label>
+      <input
+        type="text"
+        name="paciente"
+        placeholder="{{app[3]}}"
+        readonly
+      /><br />
+      <label for="razon">Razón de cita</label>
+      <input type="text" name="razon" placeholder="{{app[4]}}" readonly /><br />
+      <label for="email">Correo</label>
+      <input
+        type="email"
+        name="email"
+        placeholder="{{app[5]}}"
+        readonly
+      /><br />
+      <label for="contacto">Contacto</label>
+      <input
+        type="text"
+        name="contacto"
+        placeholder="{{app[6]}}"
+        readonly
+      /><br />
+      <label for="estado">Estado</label>
+      <input type="text" name="Estado" placeholder="APROBADA" readonly /><br />
+      {% endfor %} {% endif %}
+    </div>
+    <div class="atras-editar">
+      <a href="/citas"
+        ><button id="detalle-atras" type="button">Atras</button></a
+      >
+      <button id="detalle-editar" type="submit">Modificar cita</button>
+    </div>
+  </form>
+
+  {% endblock %}
+</div>

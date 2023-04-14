@@ -1,0 +1,77 @@
+{% extends 'layout.html' %} {% include 'navbar.html' %} {% block body %}
+<div class="pacientes">
+  <div class="top-bar d-flex row">
+    <div class="col-sm-12 col-md-6 title">
+      <i class="bx bx-user"></i>
+      <h5>Información de paciente</h5>
+    </div>
+    <div class="col-sm-12 col-md-6 search">
+      <input placeholder="Buscar paciente" type="text" name="" id="" />
+      <button>Buscar</button>
+    </div>
+  </div>
+
+  <!-- Formulario con información -->
+
+  <form
+    id="agregar-paciente-form"
+    action="/"
+    method="POST"
+  >
+    <h4 id="agregar-paciente-titulo">INFORMACIÓN DE LA CITA</h4>
+    <div>
+      {% if patient %} {% for pat in patient %}
+      <label for="identificacion">Identificación</label>
+      <input
+        type="text"
+        name="Identificacion"
+        value="{{pat[1]}}"
+        readonly
+      /><br />
+      <label for="nombres">Nombres</label>
+      <input
+        type="text"
+        name="nombres"
+        value="{{pat[2]}}"
+        readonly
+      /><br />
+      <label for="apellidos">Apellidos</label>
+      <input
+        type="text"
+        name="apellidos"
+        value="{{pat[3]}}"
+        readonly
+      /><br />
+      <label for="nacimiento">F. de nacimiento</label>
+      <input
+        type="text"
+        name="nacimiento"
+        value="{{pat[4]}}"
+        readonly
+      /><br />
+      <label for="contacto">Contacto</label>
+      <input
+        type="text"
+        name="contacto"
+        value="{{pat[5]}}"
+        readonly
+      /><br />
+      <label for="direccion">Dirección</label>
+      <input
+        style="overflow-y: scroll;"
+        type="text"
+        name="direccion"
+        value="{{pat[6]}}"
+        readonly
+      /><br />
+      {% endfor %} {% endif %}
+    </div>
+    <div class="atras-editar">
+      <a href="/pacientes"
+        ><button id="detalle-atras" type="button">Atras</button></a
+      >
+      <button id="detalle-editar" type="submit">Modificar información</button>
+    </div>
+  </form>
+  {% endblock %}
+</div>

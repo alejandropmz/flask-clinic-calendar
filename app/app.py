@@ -30,6 +30,16 @@ def pacientes():
     return render_template("pacientes.html", patients=data)
 
 
+@app.route("/paciente/<string:id>")
+def paciente(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM pacientes where id = %s", id)
+    data = cur.fetchall()
+    cur.close()
+    print(data)
+    return render_template("detalle_paciente.html", patient=data)
+
+
 ## AGREGAR PACIENTES
 
 
@@ -117,9 +127,21 @@ def citas():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM citas")
     data = cur.fetchall()
+    cur.execute("SELECT * FROM pacientes")
+    patients = cur.fetchall()
     cur.close()
     print(data)
-    return render_template("citas.html", appointments=data)
+    # print(patients)
+    return render_template("citas.html", appointments=data, patients=patients)
+
+
+@app.route("/editar_cita/<string:id>", methods=["POST"])
+def editar_cita(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM citas WHERE id = %s", id)
+    data = cur.fetchall()
+    cur.close()
+    return render_template("editar_cita.html", cita=data)
 
 
 @app.route("/agendar_cita")
@@ -146,7 +168,17 @@ def guardar_cita():
         mysql.connection.commit()
         cur.close()
         flash("Cita guardada")
-        return "Cita guardada"
+        return redirect(url_for("citas"))
+
+
+@app.route("/detalle_cita/<string:id>")
+def detalle_cita(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM citas WHERE id = %s", id)
+    data = cur.fetchall()
+    cur.close()
+    print(data)
+    return render_template("detalle_cita.html", appointment=data)
 
 
 """ VISTA FACTURAS """

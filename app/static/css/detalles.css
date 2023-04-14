@@ -1,0 +1,28 @@
+.atras-editar #detalle-atras {
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background: #d2d7d3;
+  color: black;
+}
+
+.atras-editar #detalle-atras:hover {
+  background: #b1b4b1;
+  transition: all ease-in 0.3s;
+}
+
+.atras-editar #detalle-editar {
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background: #3f83f9;
+  color: black;
+}
+
+.atras-editar #detalle-editar:hover {
+  background: #2060d0;
+  transition: all ease-in 0.3s;
+  color: white;
+}
