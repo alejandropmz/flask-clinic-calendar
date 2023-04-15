@@ -10,6 +10,14 @@
   padding: 0;
 }
 
+form input {
+  overflow-x: scroll;
+}
+
+form label {
+  padding: 0 5px;
+}
+
 /* Navbar */
 
 #all-nav {

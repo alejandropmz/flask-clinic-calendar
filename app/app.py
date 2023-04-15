@@ -1,8 +1,10 @@
 from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_mysqldb import MySQL
+from flask_bootstrap import Bootstrap
 import datetime, time
 
 app = Flask(__name__)
+Bootstrap(app)
 
 
 app.config["MYSQL_HOST"] = "localhost"
@@ -29,6 +31,7 @@ def pacientes():
     cur.close()
     return render_template("pacientes.html", patients=data)
 
+## DETALLE PACIENTE
 
 @app.route("/paciente/<string:id>")
 def paciente(id):
@@ -56,11 +59,12 @@ def cargar_paciente():
         apellidos = request.form["apellidos"]
         nacimiento = request.form["nacimiento"]
         contacto = request.form["contacto"]
+        correo = request.form["correo"]
         direccion = request.form["direccion"]
         cur = mysql.connection.cursor()
         cur.execute(
-            "INSERT INTO pacientes (identificacion, nombres, apellidos, nacimiento, contacto, direccion) VALUES (%s, %s, %s, %s, %s, %s)",
-            (identificacion, nombres, apellidos, nacimiento, contacto, direccion),
+            "INSERT INTO pacientes (identificacion, nombres, apellidos, nacimiento, contacto, correo, direccion) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+            (identificacion, nombres, apellidos, nacimiento, contacto, correo, direccion),
         )
         mysql.connection.commit()
         cur.close()

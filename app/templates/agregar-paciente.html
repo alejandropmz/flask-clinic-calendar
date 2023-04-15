@@ -10,7 +10,6 @@
 
   <!-- Formulario -->
 
-
   <form id="agregar-paciente-form" action="/cargar_paciente" method="POST">
     <h4 id="agregar-paciente-titulo">INFORMACIÓN DEL PACIENTE</h4>
     <div>
@@ -26,17 +25,22 @@
       <input type="text" name="apellidos" placeholder="Apellidos" /><br />
       <label id="nacimi" for="nacimiento">F. de Nacimiento</label>
       <input
-        style="border: solid 2px red;"
+        style="border: solid 2px red"
         type="date"
         name="nacimiento"
         placeholder="F. de Nacimiento"
       /><br />
       <label for="contacto">Contacto</label>
       <input type="text" name="contacto" placeholder="Contacto" /><br />
+      <label for="correo">Correo</label>
+      <input type="text" name="correo" placeholder="Correo" /><br />
       <label for="direccion">Dirección</label>
       <input type="text" name="direccion" placeholder="Dirección" /><br />
     </div>
-    <div>
+    <div class="atras-editar">
+      <a href="/pacientes"
+        ><button id="detalle-atras" type="button">Cancelar</button></a
+      >
       <button type="submit">Resgitrar</button>
     </div>
   </form>
