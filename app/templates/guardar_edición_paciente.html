@@ -10,7 +10,11 @@
 
   <!-- Formulario -->
 
-  <form id="agregar-paciente-form" action="/guardar_edicion_paciente/{{patient[0]}}" method="POST">
+  <form
+    id="agregar-paciente-form"
+    action="/guardar_edicion_paciente/{{patient[0]}}"
+    method="POST"
+  >
     <h4 id="agregar-paciente-titulo">EDITAR INFORMACIÓN</h4>
     <div>
       <label for="identificacion">Identificación</label>
@@ -57,7 +61,10 @@
         value="{{patient[6]}}"
       /><br />
     </div>
-    <div>
+    <div class="atras-editar">
+      <a href="/pacientes"
+        ><button id="detalle-atras" type="button">Cancelar cambios</button></a
+      >
       <button type="submit">Guardar cambios</button>
     </div>
   </form>

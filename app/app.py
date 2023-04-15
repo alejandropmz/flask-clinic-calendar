@@ -70,7 +70,7 @@ def cargar_paciente():
 ## EDITAR PACIENTES
 
 
-@app.route("/editar_paciente/<string:id>", methods=["POST"])
+@app.route("/editar_paciente/<string:id>", methods=["GET", "POST"])
 def editar_paciente(id):
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM pacientes WHERE id = %s", id)
