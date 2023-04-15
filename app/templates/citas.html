@@ -49,6 +49,7 @@
     <table>
       <tr>
         <th>No.</th>
+        <th>Fecha</th>
         <th>Inicio</th>
         <th>Fin</th>
         <th>Paciente</th>
@@ -56,15 +57,18 @@
         <th>Estado</th>
         <th>Acciones</th>
       </tr>
-      {% if appointments %} {% for appointment in appointments %}
+      {% if appointments %} {% if patients %} {% for appointment in appointments %} {% for patient in patients %}
       <tr class="patient-container">
         <td>no actualizado</td>
-        <td>{{appointment[1]}}</td>
+        <td>
+          {{appointment[1].strftime('%Y-%m-%d').split('-')[2]}}/{{appointment[1].strftime('%Y-%m-%d').split('-')[1]}}/{{appointment[1].strftime('%Y-%m-%d').split('-')[0]}}
+        </td>
         <td>{{appointment[2]}}</td>
         <td>{{appointment[3]}}</td>
-        <td>{{appointment[4]}}</td>
+        <td>{{patient[2].title()}} {{patient[3].title()}}</td>
+        <td>{{appointment[5].capitalize()}}</td>
         <td>
-          <button id="aprove-appointment">APROBADA</button>
+          <button id="aprove-appointment">aprobada</button>
         </td>
         <td>
           <a href="/detalle_cita/{{appointment[0]}}">
@@ -75,7 +79,7 @@
           </a>
         </td>
       </tr>
-      {% endfor %} {% endif %}
+      {% endfor %} {% endfor %} {% endif %} {% endif %}
     </table>
   </div>
 

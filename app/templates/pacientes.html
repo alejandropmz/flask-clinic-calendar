@@ -45,7 +45,7 @@ Pacientes {% endblock %} {% block body %}
             alt=""
           />
         </td>
-        <td>{{patient[2].upper()}} {{patient[3].upper()}}</td>
+        <td>{{patient[2].title()}} {{patient[3].title()}}</td>
         {% if patient[4] %}
         <td>
           {{patient[4].split("-")[2]}}/{{patient[4].split("-")[1]}}/{{patient[4].split("-")[0]}}

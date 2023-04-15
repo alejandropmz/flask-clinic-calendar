@@ -31,7 +31,9 @@ def pacientes():
     cur.close()
     return render_template("pacientes.html", patients=data)
 
+
 ## DETALLE PACIENTE
+
 
 @app.route("/paciente/<string:id>")
 def paciente(id):
@@ -64,7 +66,15 @@ def cargar_paciente():
         cur = mysql.connection.cursor()
         cur.execute(
             "INSERT INTO pacientes (identificacion, nombres, apellidos, nacimiento, contacto, correo, direccion) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-            (identificacion, nombres, apellidos, nacimiento, contacto, correo, direccion),
+            (
+                identificacion,
+                nombres,
+                apellidos,
+                nacimiento,
+                contacto,
+                correo,
+                direccion,
+            ),
         )
         mysql.connection.commit()
         cur.close()
@@ -131,11 +141,11 @@ def citas():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM citas")
     data = cur.fetchall()
-    cur.execute("SELECT * FROM pacientes")
+    cur.execute("SELECT * FROM pacientes WHERE id = %s", (data[0][4],))
     patients = cur.fetchall()
     cur.close()
     print(data)
-    # print(patients)
+    print(data[0][2])
     return render_template("citas.html", appointments=data, patients=patients)
 
 
@@ -150,24 +160,27 @@ def editar_cita(id):
 
 @app.route("/agendar_cita")
 def agregar_cita():
-    return render_template("agendar_cita.html")
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM pacientes")
+    data = cur.fetchall()
+    cur.close()
+    return render_template("agendar_cita.html", patients=data)
 
 
 @app.route("/guardar_cita", methods=["POST"])
 def guardar_cita():
     if request.method == "POST":
+        fecha = request.form["fecha"]
         ingreso = request.form["ingreso"]
         salida = request.form["salida"]
         paciente = request.form["paciente"]
         razon = request.form["razon"]
-        email = request.form["email"]
-        contacto = request.form["contacto"]
         cur = mysql.connection.cursor()
         cur.execute(
             """
-            INSERT INTO citas (ingreso, salida, paciente, razon, correo, contacto) VALUES (%s, %s, %s, %s, %s, %s)
+            INSERT INTO citas (fecha, ingreso, salida, paciente, razon) VALUES (%s, %s, %s, %s, %s)
         """,
-            (ingreso, salida, paciente, razon, email, contacto),
+            (fecha, ingreso, salida, paciente, razon),
         )
         mysql.connection.commit()
         cur.close()
