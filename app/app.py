@@ -129,6 +129,10 @@ def guardar_edicion_paciente(id):
 @app.route("/eliminar_paciente/<string:id>")
 def eliminar_pacientes(id):
     cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM citas WHERE paciente = %s", id)
+    citas = cur.fetchall()
+    for cita in citas:
+        cur.execute("DELETE FROM citas WHERE paciente = %s", id)
     cur.execute("DELETE FROM pacientes WHERE id = %s", id)
     mysql.connection.commit()
     cur.close()
@@ -156,23 +160,6 @@ def citas():
         print(complete_data)
         return render_template("citas.html", complete_data=complete_data)
     return render_template("no_disponible.html", mensaje="Citas")
-
-
-""" @app.route("/citas")
-def citas():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM citas")
-    data = cur.fetchall()
-    if data:
-        cur.execute("SELECT * FROM pacientes WHERE id = %s", (data[0][4],))
-        patients = cur.fetchall()
-        cur.close()
-        # print(data)
-        print(patients)
-        # fecha = data[0][2]
-        # print(str(fecha))
-        return render_template("citas.html", appointments=data, patients=patients)
-    return render_template("no_disponible.html", mensaje="Citas") """
 
 
 @app.route("/editar_cita/<string:id>", methods=["POST"])
