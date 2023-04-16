@@ -1,8 +1,4 @@
-{% extends "layout.html" %}
-
-{% include 'navbar.html' %}
-
-{% block body %}
+{% extends "layout.html" %} {% include 'navbar.html' %} {% block body %}
 
 <div class="pacientes">
   <div class="top-bar d-flex row">
@@ -12,4 +8,82 @@
     </div>
   </div>
 
-{% endblock %}
+  <!-- Formulario -->
+
+  <form
+    id="agregar-paciente-form"
+    action="/guardar_edicion_cita/{{cita[0]}}"
+    method="POST"
+  >
+    <h4 id="agregar-paciente-titulo">EDITAR INFORMACIÓN</h4>
+    <div>
+      {% if cita %}
+      <label for="paciente">Paciente</label>
+      <input
+        type="text"
+        name="paciente"
+        placeholder="idetificación"
+        readonly
+        value="{{cita[7].title()}} {{cita[8].title()}}"
+      /><br />
+      <label for="fehca">Fecha</label>
+      <input
+        type="date"
+        name="fecha"
+        placeholder="Fecha"
+        value="{{cita[1]}}"
+      /><br />
+      <label for="ingreso">Hora de ingreso</label>
+      <input
+        type="time"
+        name="ingreso"
+        placeholder="Hora de ingreso"
+        value="{{cita[2]}}"
+      /><br />
+      <label for="salida">Hora de salida</label>
+      <input
+        type="time"
+        name="salida"
+        placeholder="Hora de salida"
+        value="{{cita[3]}}"
+      /><br />
+      <label for="razon">Razón</label>
+      <input
+        type="text"
+        name="razon"
+        placeholder="Motivo"
+        value="{{cita[5]}}"
+      /><br />
+      <label for="contacto">Contacto</label>
+      <input
+        type="text"
+        name="contacto"
+        placeholder="Contacto"
+        readonly
+        value="{{cita[9]}}"
+      /><br />
+      <label for="correo">Correo</label>
+      <input
+        type="email"
+        name="correo"
+        placeholder="Correo electrónico"
+        readonly
+        value="{{cita[10]}}"
+      /><br />
+      {% endif %}
+    </div>
+    <div class="atras-editar">
+      <a href="/citas"
+        ><button id="detalle-atras" type="button">Cancelar cambios</button></a
+      >
+      <button type="submit">Guardar cambios</button>
+    </div>
+    <a id="eliminar" href="/eliminar_paciente/"
+      ><button id="boton-eliminar" type="button">
+        <i class="bi bi-trash3"></i>Eliminar cita
+      </button></a
+    >
+  </form>
+
+  {% endblock %}
+</div>

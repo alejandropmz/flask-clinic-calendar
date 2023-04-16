@@ -18,7 +18,7 @@
     action="/editar_paciente/{{patient[0][0]}}"
     method="POST"
   >
-    <h4 id="agregar-paciente-titulo">INFORMACIÓN DE LA CITA</h4>
+    <h4 id="agregar-paciente-titulo">INFORMACIÓN DEL PACIENTE</h4>
     <div>
       {% if patient %} {% for pat in patient %}
       <label for="identificacion">Identificación</label>
@@ -29,43 +29,18 @@
         readonly
       /><br />
       <label for="nombres">Nombres</label>
-      <input
-        type="text"
-        name="nombres"
-        value="{{pat[2]}}"
-        readonly
-      /><br />
+      <input type="text" name="nombres" value="{{pat[2]}}" readonly /><br />
       <label for="apellidos">Apellidos</label>
-      <input
-        type="text"
-        name="apellidos"
-        value="{{pat[3]}}"
-        readonly
-      /><br />
+      <input type="text" name="apellidos" value="{{pat[3]}}" readonly /><br />
       <label for="nacimiento">F. de nacimiento</label>
-      <input
-        type="text"
-        name="nacimiento"
-        value="{{pat[4]}}"
-        readonly
-      /><br />
+      <input type="text" name="nacimiento" value="{{pat[4]}}" readonly /><br />
       <label for="contacto">Contacto</label>
-      <input
-        type="text"
-        name="contacto"
-        value="{{pat[5]}}"
-        readonly
-      /><br />
+      <input type="text" name="contacto" value="{{pat[5]}}" readonly /><br />
       <label for="correo">Correo</label>
-      <input
-        type="text"
-        name="correo"
-        value="{{pat[6]}}"
-        readonly
-      /><br />
+      <input type="text" name="correo" value="{{pat[6]}}" readonly /><br />
       <label for="direccion">Dirección</label>
       <input
-        style="overflow-y: scroll;"
+        style="overflow-y: scroll"
         type="text"
         name="direccion"
         value="{{pat[7]}}"
@@ -80,5 +55,5 @@
       <button id="detalle-editar" type="submit">Modificar información</button>
     </div>
   </form>
-  {% endblock %}
 </div>
+{% endblock %}

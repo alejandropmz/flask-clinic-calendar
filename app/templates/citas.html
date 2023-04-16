@@ -57,7 +57,7 @@
         <th>Estado</th>
         <th>Acciones</th>
       </tr>
-      {% if complete_data %} {% for data in complete_data %} 
+      {% if complete_data %} {% for data in complete_data %}
       <tr class="patient-container">
         <td>no actualizado</td>
         <td>
@@ -69,21 +69,17 @@
         <td>{{data[5].capitalize()}}</td>
         <td>
           {% if data[6] %}
-          <button id="aprove-appointment">
-             aprobada
-            </button>
-            {% else %}
-            <button id="rejected-appointment">
-              cancelada
-             </button>
-            {% endif %}
+          <button id="aprove-appointment">aprobada</button>
+          {% else %}
+          <button id="rejected-appointment">cancelada</button>
+          {% endif %}
         </td>
         <td>
-          <a href="/detalle_cita/{{data[4]}}">
+          <a id="tnone" href="/detalle_cita/{{data[0]}}">
             <button><i class="bi bi-eye"></i>ver</button>
           </a>
-          <a href="/editar_cita/{{data[4]}}">
-            <button><i class="bi bi-pencil-square"></i>modificar</button>
+          <a href="/editar_cita/{{data[0]}}">
+            <button type="button" ><i class="bi bi-pencil-square"></i>modificar</button>
           </a>
         </td>
       </tr>

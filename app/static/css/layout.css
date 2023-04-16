@@ -10,6 +10,11 @@
   padding: 0;
 }
 
+a,
+#tnone {
+  text-decoration: none;
+}
+
 form input {
   overflow-x: scroll;
 }
@@ -97,13 +102,11 @@ form label {
   margin-top: 15px;
 }
 
-
 /* Notificación */
 
 #notificacion {
   border: solid red 2px;
 }
-
 
 /* select */
 
@@ -120,6 +123,8 @@ form label {
 
 /* botones */
 
+/* eliminar */
+
 #agregar-paciente-form #boton-eliminar {
   background: #c72222;
 }
@@ -130,4 +135,16 @@ form label {
 
 #boton-eliminar i {
   margin: 0 5px 0;
+}
+
+/* llevar a pacientes */
+
+#redireccion-paciente i {
+  font-size: 1.2rem;
+  color: black;
+}
+
+#redireccion-paciente i:hover {
+  font-size: 1.2rem;
+  color: rgb(54, 54, 54);
 }

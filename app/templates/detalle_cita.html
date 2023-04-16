@@ -8,44 +8,47 @@
     </div>
   </div>
 
+  <!-- Formulario con información -->
+
   <form
     id="agregar-paciente-form"
-    action="/editar_cita/{{appointment[0]}}"
+    action="/editar_cita/{{cita[0][0]}}"
     method="POST"
   >
     <h4 id="agregar-paciente-titulo">INFORMACIÓN DE LA CITA</h4>
     <div>
-      {% if appointment and patient %} {% for app in appointment %} {% for pat in patient %}
-      <label for="fecha">Fecha</label>
-      <input type="text" name="fecha" value="{{app[1]}}" readonly /><br />
-      <label for="ingreso">Hora de ingreso</label>
-      <input type="text" name="ingreso" value="{{app[2]}}" readonly /><br />
-      <label for="salida">Hora de salida</label>
-      <input type="text" name="salida" value="{{app[3]}}" readonly /><br />
+      {% if cita %} {% for cit in cita %}
       <label for="paciente">Paciente</label>
       <input
         type="text"
         name="paciente"
-        value="{{pat[2].title()}} {{pat[3].title()}}"
+        value="{{cit[7].title()}} {{cit[8].title()}}"
         readonly
-      /><br />
-      <label for="razon">Razón de cita</label>
-      <input type="text" name="razon" value="{{app[5]}}" readonly /><br />
-      <label for="email">Correo</label>
-      <input type="email" name="email" value="{{pat[6]}}" readonly /><br />
+      />
+      <a id="redireccion-paciente" href="{{url_for('paciente', id=cit[4])}}"
+        ><i class="bi bi-list-ul"></i
+      ></a>
+      <br />
+      <label for="fecha">Fecha</label>
+      <input type="text" name="fecha" value="{{cit[1]}}" readonly /><br />
+      <label for="ingreso">Hora ingreso</label>
+      <input type="text" name="ingreso" value="{{cit[2]}}" readonly /><br />
+      <label for="salida">Hora salida</label>
+      <input type="text" name="salida" value="{{cit[3]}}" readonly /><br />
+      <label for="razon">Razón cita</label>
+      <input type="text" name="razon" value="{{cit[5]}}" readonly /><br />
       <label for="contacto">Contacto</label>
-      <input type="text" name="contacto" value="{{pat[5]}}" readonly /><br />
-      <label for="estado">Estado</label>
-      <input type="text" name="Estado" value="Aprobada" readonly /><br />
-      {% endfor %} {% endfor %} {% else %} <h2>no hay citas </h2> {% endif %}
+      <input type="text" name="contacto" value="{{cit[10]}}" readonly /><br />
+      <label for="correo">Correo</label>
+      <input type="text" name="correo" value="{{cit[9]}}" readonly /><br />
+      {% endfor %} {% endif %}
     </div>
     <div class="atras-editar">
       <a href="/citas"
         ><button id="detalle-atras" type="button">Atras</button></a
       >
-      <button id="detalle-editar" type="submit">Modificar cita</button>
+      <button id="detalle-editar" type="submit">Modificar información</button>
     </div>
   </form>
-
-  {% endblock %}
 </div>
+{% endblock %}
