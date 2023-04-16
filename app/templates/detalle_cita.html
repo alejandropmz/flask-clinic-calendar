@@ -16,26 +16,28 @@
     <h4 id="agregar-paciente-titulo">INFORMACIÓN DE LA CITA</h4>
     <div>
       {% if appointment and patient %} {% for app in appointment %} {% for pat in patient %}
+      <label for="fecha">Fecha</label>
+      <input type="text" name="fecha" value="{{app[1]}}" readonly /><br />
       <label for="ingreso">Hora de ingreso</label>
-      <input type="text" name="ingreso" value="{{app[1]}}" readonly /><br />
+      <input type="text" name="ingreso" value="{{app[2]}}" readonly /><br />
       <label for="salida">Hora de salida</label>
-      <input type="text" name="salida" value="{{app[2]}}" readonly /><br />
+      <input type="text" name="salida" value="{{app[3]}}" readonly /><br />
       <label for="paciente">Paciente</label>
       <input
         type="text"
         name="paciente"
-        value="{{pat[2]}} {{pat[3]}}"
+        value="{{pat[2].title()}} {{pat[3].title()}}"
         readonly
       /><br />
       <label for="razon">Razón de cita</label>
-      <input type="text" name="razon" value="{{app[4]}}" readonly /><br />
+      <input type="text" name="razon" value="{{app[5]}}" readonly /><br />
       <label for="email">Correo</label>
-      <input type="email" name="email" value="{{app[5]}}" readonly /><br />
+      <input type="email" name="email" value="{{pat[6]}}" readonly /><br />
       <label for="contacto">Contacto</label>
-      <input type="text" name="contacto" value="{{app[6]}}" readonly /><br />
+      <input type="text" name="contacto" value="{{pat[5]}}" readonly /><br />
       <label for="estado">Estado</label>
-      <input type="text" name="Estado" value="APROBADA" readonly /><br />
-      {% endfor %} {% endfor %} {% endif %}
+      <input type="text" name="Estado" value="Aprobada" readonly /><br />
+      {% endfor %} {% endfor %} {% else %} <h2>no hay citas </h2> {% endif %}
     </div>
     <div class="atras-editar">
       <a href="/citas"

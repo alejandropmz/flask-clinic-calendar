@@ -46,6 +46,20 @@
   background: #066406;
 }
 
+#rejected-appointment {
+  border-radius: 5px;
+  padding: 5px 8px;
+  border: none;
+  background: #ee4040;
+  color: white;
+  width: 80%;
+  cursor: default;
+}
+
+#rejected-appointment:hover {
+  background: #c42e2e;
+}
+
 #cancel-appointment {
   border-radius: 5px;
   padding: 5px 8px;

@@ -28,8 +28,10 @@ def pacientes():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM pacientes")
     data = cur.fetchall()
-    cur.close()
-    return render_template("pacientes.html", patients=data)
+    if data:
+        cur.close()
+        return render_template("pacientes.html", patients=data)
+    return render_template("no_disponible.html", mensaje="pacientes")
 
 
 ## DETALLE PACIENTE
@@ -141,12 +143,36 @@ def citas():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM citas")
     data = cur.fetchall()
-    cur.execute("SELECT * FROM pacientes WHERE id = %s", (data[0][4],))
-    patients = cur.fetchall()
-    cur.close()
-    print(data)
-    print(data[0][2])
-    return render_template("citas.html", appointments=data, patients=patients)
+    if data:
+        cur.execute(
+            """
+        SELECT citas.*, pacientes.nombres, pacientes.apellidos
+        FROM citas
+        JOIN pacientes ON citas.paciente = pacientes.id
+    """
+        )
+        complete_data = cur.fetchall()
+        cur.close()
+        print(complete_data)
+        return render_template("citas.html", complete_data=complete_data)
+    return render_template("no_disponible.html", mensaje="Citas")
+
+
+""" @app.route("/citas")
+def citas():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM citas")
+    data = cur.fetchall()
+    if data:
+        cur.execute("SELECT * FROM pacientes WHERE id = %s", (data[0][4],))
+        patients = cur.fetchall()
+        cur.close()
+        # print(data)
+        print(patients)
+        # fecha = data[0][2]
+        # print(str(fecha))
+        return render_template("citas.html", appointments=data, patients=patients)
+    return render_template("no_disponible.html", mensaje="Citas") """
 
 
 @app.route("/editar_cita/<string:id>", methods=["POST"])
@@ -175,12 +201,13 @@ def guardar_cita():
         salida = request.form["salida"]
         paciente = request.form["paciente"]
         razon = request.form["razon"]
+        estado = True
         cur = mysql.connection.cursor()
         cur.execute(
             """
-            INSERT INTO citas (fecha, ingreso, salida, paciente, razon) VALUES (%s, %s, %s, %s, %s)
+            INSERT INTO citas (fecha, ingreso, salida, paciente, razon, estado) VALUES (%s, %s, %s, %s, %s, %s)
         """,
-            (fecha, ingreso, salida, paciente, razon),
+            (fecha, ingreso, salida, paciente, razon, estado),
         )
         mysql.connection.commit()
         cur.close()
@@ -198,11 +225,12 @@ def detalle_cita(id):
     print(data[0][3])
 
     cur2 = mysql.connection.cursor()
-    cur2.execute("SELECT * FROM pacientes WHERE id = %s", (data[0][3],))
-    patient = cur2.fetchall()
-    cur2.close()
-    print(patient)
-    return render_template("detalle_cita.html", appointment=data, patient=patient)
+    if data is True:
+        cur2.execute("SELECT * FROM pacientes WHERE id = %s", (data[0][4],))
+        patient = cur2.fetchall()
+        cur2.close()
+        print(patient)
+        return render_template("detalle_cita.html", appointment=data, patient=patient)
 
 
 """ VISTA FACTURAS """

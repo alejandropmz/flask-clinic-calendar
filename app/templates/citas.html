@@ -57,29 +57,37 @@
         <th>Estado</th>
         <th>Acciones</th>
       </tr>
-      {% if appointments %} {% if patients %} {% for appointment in appointments %} {% for patient in patients %}
+      {% if complete_data %} {% for data in complete_data %} 
       <tr class="patient-container">
         <td>no actualizado</td>
         <td>
-          {{appointment[1].strftime('%Y-%m-%d').split('-')[2]}}/{{appointment[1].strftime('%Y-%m-%d').split('-')[1]}}/{{appointment[1].strftime('%Y-%m-%d').split('-')[0]}}
+          {{data[1].strftime('%Y-%m-%d').split('-')[2]}}/{{data[1].strftime('%Y-%m-%d').split('-')[1]}}/{{data[1].strftime('%Y-%m-%d').split('-')[0]}}
         </td>
-        <td>{{appointment[2]}}</td>
-        <td>{{appointment[3]}}</td>
-        <td>{{patient[2].title()}} {{patient[3].title()}}</td>
-        <td>{{appointment[5].capitalize()}}</td>
+        <td>{{data[2]}}</td>
+        <td>{{data[3]}}</td>
+        <td>{{data[7].title()}} {{data[8].title()}}</td>
+        <td>{{data[5].capitalize()}}</td>
         <td>
-          <button id="aprove-appointment">aprobada</button>
+          {% if data[6] %}
+          <button id="aprove-appointment">
+             aprobada
+            </button>
+            {% else %}
+            <button id="rejected-appointment">
+              cancelada
+             </button>
+            {% endif %}
         </td>
         <td>
-          <a href="/detalle_cita/{{appointment[0]}}">
+          <a href="/detalle_cita/{{data[4]}}">
             <button><i class="bi bi-eye"></i>ver</button>
           </a>
-          <a href="/editar_cita/{{appointment[0]}}">
+          <a href="/editar_cita/{{data[4]}}">
             <button><i class="bi bi-pencil-square"></i>modificar</button>
           </a>
         </td>
       </tr>
-      {% endfor %} {% endfor %} {% endif %} {% endif %}
+      {% endfor %} {% endif %}
     </table>
   </div>
 
