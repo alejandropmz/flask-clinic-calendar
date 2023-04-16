@@ -37,10 +37,10 @@ def pacientes():
 ## DETALLE PACIENTE
 
 
-@app.route("/paciente/<string:id>")
+@app.route("/paciente/<int:id>")
 def paciente(id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM pacientes where id = %s", id)
+    cur.execute("SELECT * FROM pacientes WHERE id = %s", (id,))
     data = cur.fetchall()
     cur.close()
     print(data)
