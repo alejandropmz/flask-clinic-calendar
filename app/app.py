@@ -120,7 +120,7 @@ def guardar_edicion_paciente(id):
         )
         mysql.connection.commit()
         cur.close()
-        return redirect(url_for("pacientes"))
+        return redirect(url_for("paciente", id=id))
 
 
 ## ELIMINAR PACIENTES
