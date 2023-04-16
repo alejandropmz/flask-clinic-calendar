@@ -117,3 +117,17 @@ form label {
 #general-select option {
   border: solid red 2px;
 }
+
+/* botones */
+
+#agregar-paciente-form #boton-eliminar {
+  background: #c72222;
+}
+
+#agregar-paciente-form #boton-eliminar:hover {
+  background: #a81212;
+}
+
+#boton-eliminar i {
+  margin: 0 5px 0;
+}
