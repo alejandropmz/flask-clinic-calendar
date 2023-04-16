@@ -253,6 +253,16 @@ def detalle_cita(id):
     return render_template("detalle_cita.html", cita=data)
 
 
+# ELIMINAR CITAS
+@app.route("/eliminar_cita/<string:id>")
+def eliminar_cita(id):
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM citas WHERE id = %s", id)
+    mysql.connection.commit()
+    cur.close()
+    return redirect(url_for("citas"))
+
+
 """ VISTA FACTURAS """
 
 
