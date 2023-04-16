@@ -86,16 +86,16 @@ def cargar_paciente():
 ## EDITAR PACIENTES
 
 
-@app.route("/editar_paciente/<string:id>", methods=["GET", "POST"])
+@app.route("/editar_paciente/<int:id>", methods=["GET", "POST"])
 def editar_paciente(id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM pacientes WHERE id = %s", id)
+    cur.execute("SELECT * FROM pacientes WHERE id = %s", (id,))
     data = cur.fetchall()
     cur.close()
     return render_template("guardar_edición_paciente.html", patient=data[0])
 
 
-@app.route("/guardar_edicion_paciente/<string:id>", methods=["POST"])
+@app.route("/guardar_edicion_paciente/<int:id>", methods=["POST"])
 def guardar_edicion_paciente(id):
     if request.method == "POST":
         identificacion = request.form["identificacion"]
@@ -126,14 +126,14 @@ def guardar_edicion_paciente(id):
 ## ELIMINAR PACIENTES
 
 
-@app.route("/eliminar_paciente/<string:id>")
+@app.route("/eliminar_paciente/<int:id>")
 def eliminar_pacientes(id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM citas WHERE paciente = %s", id)
+    cur.execute("SELECT * FROM citas WHERE paciente = %s", (id,))
     citas = cur.fetchall()
     for cita in citas:
-        cur.execute("DELETE FROM citas WHERE paciente = %s", id)
-    cur.execute("DELETE FROM pacientes WHERE id = %s", id)
+        cur.execute("DELETE FROM citas WHERE paciente = %s", (id,))
+    cur.execute("DELETE FROM pacientes WHERE id = %s", (id,))
     mysql.connection.commit()
     cur.close()
     return redirect(url_for("pacientes"))
@@ -161,7 +161,7 @@ def citas():
     return render_template("no_disponible.html", mensaje="Citas")
 
 
-@app.route("/editar_cita/<string:id>", methods=["POST", "GET"])
+@app.route("/editar_cita/<int:id>", methods=["POST", "GET"])
 def editar_cita(id):
     cur = mysql.connection.cursor()
     cur.execute(
@@ -172,7 +172,7 @@ def editar_cita(id):
     ON citas.paciente = pacientes.id 
     WHERE citas.id = %s
     """,
-        id,
+        (id,)
     )
     data = cur.fetchall()
     cur.close()
@@ -181,7 +181,7 @@ def editar_cita(id):
 
 
 # GUARDAR EDICIÓN DE CITA
-@app.route("/guardar_edicion_cita/<string:id>", methods=["POST"])
+@app.route("/guardar_edicion_cita/<int:id>", methods=["POST"])
 def guardar_edicion_cita(id):
     fecha = request.form["fecha"]
     ingreso = request.form["ingreso"]
@@ -235,7 +235,7 @@ def guardar_cita():
         return redirect(url_for("citas"))
 
 
-@app.route("/detalle_cita/<string:id>")
+@app.route("/detalle_cita/<int:id>")
 def detalle_cita(id):
     cur = mysql.connection.cursor()
     cur.execute(
@@ -245,7 +245,7 @@ def detalle_cita(id):
     ON citas.paciente = pacientes.id
     WHERE citas.id = %s
     """,
-        id,
+        (id,)
     )
     data = cur.fetchall()
     cur.close()
@@ -254,10 +254,10 @@ def detalle_cita(id):
 
 
 # ELIMINAR CITAS
-@app.route("/eliminar_cita/<string:id>")
+@app.route("/eliminar_cita/<int:id>")
 def eliminar_cita(id):
     cur = mysql.connection.cursor()
-    cur.execute("DELETE FROM citas WHERE id = %s", id)
+    cur.execute("DELETE FROM citas WHERE id = %s", (id,))
     mysql.connection.commit()
     cur.close()
     return redirect(url_for("citas"))
