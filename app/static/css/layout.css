@@ -103,3 +103,17 @@ form label {
 #notificacion {
   border: solid red 2px;
 }
+
+
+/* select */
+
+#general-select {
+  border: none;
+  padding: 2px 5px;
+  background: #efeaea;
+  font-size: 0.9rem;
+}
+
+#general-select option {
+  border: solid red 2px;
+}
